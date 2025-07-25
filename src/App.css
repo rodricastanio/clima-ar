@@ -88,7 +88,6 @@ img {
   text-align: center;
   opacity: 0;
   transform: translateX(-50px);
-  /* la empuja desde la izquierda */
   animation: slideInLeft 0.8s ease-out forwards;
 }
 
@@ -96,7 +95,6 @@ img {
   to {
     opacity: 1;
     transform: translateX(0);
-    /* vuelve a su lugar */
   }
 }
 
@@ -119,7 +117,6 @@ img {
 
 #info-api {
   color: #222;
-  /* Más contraste que blanco */
   font-weight: 700;
   font-size: 1rem;
   margin-bottom: 15px;
@@ -139,11 +136,8 @@ h3 {
 .header {
   display: flex;
   align-items: center;
-  /* alinea verticalmente */
   justify-content: center;
-  /* centra horizontalmente */
   gap: 0.5rem;
-  /* reduce la separación entre textos */
   padding: 5px;
   text-align: center;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
@@ -178,9 +172,9 @@ h3 {
  .header {
   display: flex;
   flex-direction: row;
-  align-items: baseline; /* alineados por la base del texto */
+  align-items: baseline;
   justify-content: center;
-  gap: 1rem; /* espacio entre ambos */
+  gap: 1rem; 
   padding: 0;
   margin: 15px 0;
   overflow: hidden;
@@ -198,7 +192,7 @@ h3 {
   margin: 0;
   padding: 0;
   line-height: 1;
-  height: 6.6rem; /* un poco más para evitar que corte texto */
+  height: 6.6rem; 
   overflow: hidden;
 }
   select,
@@ -270,13 +264,13 @@ h3 {
 
 @media (max-width: 768px) {
   .header {
-    flex-direction: column; /* Apila los elementos verticalmente */
+    flex-direction: column; 
     align-items: center;
     padding: 1rem;
   }
 
   .titulo {
-    font-size: 60px; /* Más chico para pantallas chicas */
+    font-size: 60px; 
     text-align: center;
   }
 
@@ -292,7 +286,6 @@ h3 {
     padding: 0.6rem 1.2rem;
   }
 
-  /* Si tenés algún contenedor principal */
   .container {
     padding: 1rem;
   }

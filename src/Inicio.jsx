@@ -1,6 +1,5 @@
 import { useEffect } from "react"
 import { useState } from "react"
-import SplitText from "./SplitText"
 import RotatingText from "./RotatingText"
 
 function Inicio() {
@@ -16,7 +15,7 @@ function Inicio() {
 
     const apiKey = import.meta.env.VITE_API_KEY
 
-    //Weather function
+    //clima funciones
     function mostrarClima() {
         const exclude = "minutely,hourly";
         const objeto = localidad.find(l => l.nombre === localSeleccionada)
@@ -27,17 +26,17 @@ function Inicio() {
         }
         const lat = objeto.centroide.lat
         const lon = objeto.centroide.lon
-        //it calls the api
+        //llamada a la api
         fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric&lang=es`)
             .then(res => {
                 if (!res.ok) {
                     throw new Error('Error en la respuesta de la API');
                 }
-                return res.json();  // Solo parsear si la respuesta es OK
+                return res.json(); 
             })
             .then(data => setClima(data))
     }
-    //Use Effect provinces
+    //Use Effect provincias
     useEffect(
         () => {
             fetch("https://apis.datos.gob.ar/georef/api/provincias")
@@ -55,8 +54,6 @@ function Inicio() {
     //Update localities
     function updateLocalities(nombreProv) {
         setLoadLoc(true)
-        // const prov = document.getElementById("provs");
-        // let provValue = prov.value;
         let provClean = nombreProv.replace(/\s+/g, "-");
         fetch(`https://apis.datos.gob.ar/georef/api/localidades?provincia=${provClean}&max=500`)
             .then(res => res.json())
@@ -75,7 +72,6 @@ function Inicio() {
 
     return (
         <>
-
             <div className="header">
                 <span className="titulo">Argentina</span>
                 <RotatingText
@@ -108,23 +104,19 @@ function Inicio() {
                     rotationInterval={2000}
                 />
             </div>
-
-
-
             <br />
             <br />
-
             {loadProvinces ? (
                 <p id="carga">Cargando provincias...</p>
             ) : (
                 <>
-                    {/* Select de provincias */}
+                    {/* selecciono una provincia */}
                     <select
                         id="provs"
                         onChange={(e) => {
                             const nombreProv = e.target.value;
                             setProvSeleccionada(nombreProv);
-                            setLocalidadSeleccionada(""); // Limpia localidad seleccionada al cambiar provincia
+                            setLocalidadSeleccionada("");
                             updateLocalities(nombreProv);
                             setDivClima(false);
                             setClima([])
@@ -137,10 +129,7 @@ function Inicio() {
                             </option>
                         ))}
                     </select>
-
                     <br />
-
-                    {/* Select de localidades siempre visible */}
                     <select
                         disabled={!provSeleccionada || loadLoc}
                         id="local"
@@ -157,31 +146,23 @@ function Inicio() {
                             </option>
                         ))}
                     </select>
-
                     <br />
-
-
-                    {/* Mensaje de carga de localidades */}
+                    {/* mensaje de carga de localidades */}
                     {loadLoc && provSeleccionada && <p id="carga">Cargando localidades...</p>}
-
-
                     <button onClick={() => {
                         mostrarClima();
                         setDivClima(true);
                         setClima([])
                         window.location.href = "#clima"
                     }}>Ver Temperatura</button>
-
-
-
-                    {/* Mostrar datos del clima */}
+                    {/* mostrar datos del clima */}
                     <div className="clima" id="clima" style={show}>
                         <div className="clima-wrapper">
                             {clima.main && (
                                 <div>
                                     <h2>{localSeleccionada}</h2>
                                     <h3>Temperatura actual: {clima.main.temp}°</h3>
-                                    {/* Imagen del clima */}
+                                    {/* imagen del clima */}
                                     {clima.weather && (
                                         <div>
                                             <img
@@ -195,13 +176,9 @@ function Inicio() {
                                         <p>Temperatura máxima: <span id="info-api">{clima.main.temp_max}°</span></p>
                                         <p>Sensación térmica: <span id="info-api">{clima.main.feels_like}°</span></p>
                                     </div>
-
                                 </div>
                             )}
-
-
-
-                            {/* Datos del viento */}
+                            {/* datos del viento */}
                             {clima.wind && (
                                 <div className="info-extra">
                                     <p>Dirección del viento: <span id="info-api">{clima.wind.deg}°</span></p>
@@ -210,15 +187,12 @@ function Inicio() {
                                 </div>
                             )}
                         </div>
-
                     </div>
-
                 </>
             )
             }
         </>
     );
-
 }
 
 export default Inicio
