@@ -198,8 +198,8 @@ h3 {
   select,
   select:disabled {
     height: 50px;
-    width: 400px;
-    font-size: 20px;
+    width: 350px;
+    font-size: 18px;
   }
 
   button {
@@ -210,32 +210,30 @@ h3 {
     padding: auto;
   }
   
-  select:hover, button:hover, option{
-    transform: scale(1.1);
-  }
+  
  
   .clima {
     margin: 30px auto;
-    max-width: 850px;
-    height: 500px;
+    max-width: 650px;
+    height: 400px;
   }
 
   h2 {
-    font-size: 40px;
-  }
-
-  h3 {
     font-size: 30px;
   }
 
+  h3 {
+    font-size: 25px;
+  }
+
   img {
-    width: 150px;
-    height: 150px
+    width: 100px;
+    height: 100px
   }
 
   .info-extra,
   #info-api {
-    font-size: 30px;
+    font-size: 25px;
   }
 
 }

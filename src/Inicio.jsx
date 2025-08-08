@@ -13,7 +13,9 @@ function Inicio() {
     const [loadLoc, setLoadLoc] = useState(true)
     const [divClima, setDivClima] = useState(false)
 
-    const apiKey = import.meta.env.VITE_API_KEY
+    const apiKey = import.meta.env.VITE_API_KEY;
+
+
 
     //clima funciones
     function mostrarClima() {
